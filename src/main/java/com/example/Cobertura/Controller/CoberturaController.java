@@ -4,13 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import java.util.HashMap;
 import java.util.List;
 
 
 
 //Entities y logica
 import com.example.Cobertura.Logic.*;
+
+import io.grpc.netty.shaded.io.netty.util.internal.SystemPropertyUtil;
+import lombok.var;
+
 import com.example.Cobertura.Entities.*;
 
 // Indicamos que nuestra clase va ser tipo controlador
@@ -19,6 +23,29 @@ import com.example.Cobertura.Entities.*;
 public class CoberturaController {
     @Autowired
     CoberturaLogic coberturaLogic;
+
+      /** Nuevo cuerpo para cobertura
+     * @param input - Json tipo BodyCobertura
+     * @return - ResponseEntity - status - body tipo ResponseGeneral
+     */
+    @PostMapping(value = "/InsertarCoberturas")
+    public ResponseEntity<?> InsertarCoberturas(@RequestBody List<BodyCobertura> input_list){
+    ResponseGeneral resp = new ResponseGeneral();
+    boolean valid;
+    valid = coberturaLogic.Insertar_coberturas(input_list);
+    if(valid){
+        resp.setCode("200");
+        resp.setResult("Cobertura añadida correctamente.");
+        resp.setResultDescription("Se han insertado las coberturas");
+        return ResponseEntity.status(200).body(resp);
+    }else{
+        resp.setCode("400");
+        resp.setResult("Ha ocurrido un error");
+        resp.setResultDescription("No se ha insertado las coberturas");
+        return ResponseEntity.status(400).body(resp);
+    }
+
+    }
 
     /** Recibe un Json y lo inserta en tabla cobertura
      * @param input - Json con "state" y "region"
@@ -44,6 +71,7 @@ public class CoberturaController {
 
     }
 
+
     /**Retorna una Lista con los datos de todas las regiones de cobertura
      * @return - ResponseEntity - status - body tipo ResponseGeneral
      */
@@ -52,7 +80,7 @@ public class CoberturaController {
         ResponseGeneral resp = new ResponseGeneral();
 
         try {
-            List<InputCobertura> cobertura= coberturaLogic.GetAll();
+            List<BodyCobertura> cobertura= coberturaLogic.GetAll();
             resp.setCode("200");
             resp.setResult("Servicio consumido correctamente.");
             resp.setResultDescription("Se han consultado los datos correctamente.");

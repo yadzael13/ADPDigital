@@ -16,12 +16,12 @@ import javax.annotation.PostConstruct;
 @Service
 public class FirebaseConection {
 
-   /* @PostConstruct
+   @PostConstruct
     public void firestoreInit() throws IOException{
         String projectId = "proyecto-bg-v1";
         try{
             
-            String reciclable_path = "/home/yadzael/Documentos/Totalplay/region_ch/regions/src/main/java/com/example/Cobertura/Firebase";
+            String reciclable_path = "C:/Users/hvargasc/Documents/Totalplay/Adopcion Digital/AdopcionDigital/src/main/java/com/example/Cobertura/Firebase";
             FileInputStream credentials = new FileInputStream(reciclable_path+"/key.json");
             System.out.println(credentials);
             FirebaseOptions options = FirebaseOptions.builder()
@@ -33,11 +33,11 @@ public class FirebaseConection {
                 FirebaseApp.initializeApp(options);
             }
         } catch(IOException e){
-            System.out.println("");
+            System.out.println("Error Firebase-- \n"+e.toString());
         }
             
-    }*/
-
+    }
+    /* 
     @PostConstruct
     private void firestoreInit() {
 
@@ -57,7 +57,7 @@ public class FirebaseConection {
             System.out.println("Error al consultar Firestore: " + e.getMessage() );
         }
 
-    }
+    } */
 
     public Firestore getFirestore(){
         return FirestoreClient.getFirestore();

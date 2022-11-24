@@ -1,9 +1,11 @@
 package com.example.Cobertura.Firebase;
 
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.concurrent.ExecutionException;
 
+import com.example.Cobertura.Entities.BodyCobertura;
 import com.example.Cobertura.Entities.RegionBody;
 import com.google.api.core.ApiFuture;
 
@@ -57,6 +59,26 @@ public interface FirebaseMethods {
             firebase.getFirestore()
                             .collection(col_name)
                             .document(country).set(region);
+            valid = true;
+            return valid;
+       } catch (Exception e) {
+        System.out.println(e.toString());
+        return valid;
+       }
+    }
+
+      /**Nueva Logica
+     * @param country
+     * @param region
+     * @return - True si ha sido correcto / False si algo ha fallado
+     */
+    static Boolean InsertarCoberturas(String cvd_distrito, HashMap<String, String> input){
+        Boolean valid = false;
+        assert false;
+       try {
+            firebase.getFirestore()
+                            .collection(col_name)
+                            .document(cvd_distrito).set(input);
             valid = true;
             return valid;
        } catch (Exception e) {
