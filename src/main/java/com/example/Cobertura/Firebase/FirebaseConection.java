@@ -42,21 +42,22 @@ public class FirebaseConection {
     /* 
     @PostConstruct
     private void firestoreInit() {
-
+        String projectId = "fintech-delivery-dev";
         try {
 
             FirebaseOptions options = FirebaseOptions.builder()
                     .setCredentials(GoogleCredentials.getApplicationDefault())
-                    .setProjectId("fintech-delivery-dev")
+                    .setProjectId(projectId)
                     .setDatabaseUrl("https://fintech-delivery-dev.firebaseio.com")
                     .build();
 
             if(FirebaseApp.getApps().isEmpty()) {
                 FirebaseApp.initializeApp(options);
             }
+            Loggers.InfoLog("Firebase Connection", "Correctamente conectado a proyecto "+projectId);
 
         } catch (Exception e) {
-            System.out.println("Error al consultar Firestore: " + e.getMessage() );
+            Loggers.ErrorLog("Firebase Connection Exception", e.toString());
         }
 
     } */

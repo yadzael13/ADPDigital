@@ -13,7 +13,7 @@ public class Loggers {
         Logger logger = LoggerFactory.getLogger(LinkController.class);
         logger.error("\n----------------------------------\n"+
                             "Error en : "+path
-                            +"\n Descripcion: "+error
+                            +"\nDescripcion: "+error
                      +"\n----------------------------------\n");
     }
 
@@ -21,7 +21,7 @@ public class Loggers {
         Logger logger = LoggerFactory.getLogger(LinkController.class);
         logger.info("\n----------------------------------\n"+
                             "Actividad en : "+path
-                            +"\n Descripcion: "+info
+                            +"\nDescripcion: "+info
                      +"\n----------------------------------\n");
     }
 }
