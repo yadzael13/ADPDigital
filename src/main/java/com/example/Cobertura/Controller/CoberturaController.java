@@ -82,11 +82,13 @@ public class CoberturaController {
      */
     @GetMapping(value = "/Get_All_States")
     public ResponseEntity<?> GetAll(){
-        
-
         try {
             ResponseData resp = new ResponseData();
-            List<BodyCobertura> cobertura= coberturaLogic.GetAll();
+            List<BodyCobertura> cobertura = coberturaLogic.GetAll();
+            if(cobertura.equals(null)){
+                Exception e = new Exception();
+                throw e;
+            }
             resp.setCode("200");
             resp.setResult("Servicio consumido correctamente.");
             resp.setResultDescription("Se han consultado los datos correctamente.");
@@ -99,7 +101,6 @@ public class CoberturaController {
             resp.setCode("400");
             resp.setResult("Ha ocurrido un error");
             resp.setResultDescription("No se ha podido realizar la consulta");
-            System.out.println("Error --- "+e.toString());
             return ResponseEntity.status(400).body(resp);
         }
         

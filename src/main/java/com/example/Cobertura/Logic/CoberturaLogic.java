@@ -17,9 +17,10 @@ import com.example.Cobertura.Firebase.FirebaseMethods;
 public class CoberturaLogic implements FirebaseMethods{
     
 
-    /**
+    /**Obtiene solo un elemento de Fb por su clave
+     * Si no existe retorna null
      * @param cve_id
-     * @return
+     * @return Objeto tipo BodyCobertura
      */
     public BodyCobertura GetOne(String cve_id){
         BodyCobertura bdret = new BodyCobertura();
@@ -45,8 +46,9 @@ public class CoberturaLogic implements FirebaseMethods{
     }
 
    
-    /**
-     * @return
+    /**Obtiene todos los elementos en la tabla cobertura
+     * si hay error retorna null
+     * @return Lista de objetos BodyCobertura
      */
     public List<BodyCobertura> GetAll(){
         try {
@@ -77,9 +79,10 @@ public class CoberturaLogic implements FirebaseMethods{
     }
 
   
-    /**
+    /**Inserta una lista de objetos tipo BodyCobertura
+     * Si alguno tiene un error, para el profeso y retorna false
      * @param input
-     * @return
+     * @return  true o false si se ha concluido bien el proceso
      */
     public Boolean Insertar_coberturas(List<BodyCobertura> input){
         Boolean ret;
