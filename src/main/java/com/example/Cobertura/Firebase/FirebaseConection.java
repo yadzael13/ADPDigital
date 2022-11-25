@@ -1,5 +1,6 @@
 package com.example.Cobertura.Firebase;
 
+import com.example.Cobertura.Entities.Loggers;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.FirebaseApp;
@@ -21,7 +22,7 @@ public class FirebaseConection {
         String projectId = "proyecto-bg-v1";
         try{
             
-            String reciclable_path = "C:/Users/hvargasc/Documents/Totalplay/Adopcion Digital/AdopcionDigital/src/main/java/com/example/Cobertura/Firebase";
+            String reciclable_path = "C:/Users/hvargasc/Documents/Totalplay/ADPDigital/AdopcionDigital/src/main/java/com/example/Cobertura/Firebase";
             FileInputStream credentials = new FileInputStream(reciclable_path+"/key.json");
             System.out.println(credentials);
             FirebaseOptions options = FirebaseOptions.builder()
@@ -32,8 +33,9 @@ public class FirebaseConection {
             if(FirebaseApp.getApps().isEmpty()) {
                 FirebaseApp.initializeApp(options);
             }
+            Loggers.InfoLog("Firebase Connection", "Correctamente conectado a proyecto "+projectId);
         } catch(IOException e){
-            System.out.println("Error Firebase-- \n"+e.toString());
+            Loggers.ErrorLog("Firebase Connection Exception", e.toString());
         }
             
     }

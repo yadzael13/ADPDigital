@@ -15,6 +15,6 @@ public class BodyCobertura {
     @JsonProperty("nombre_distrito")
     public String nombre_distrito;
 
-    @JsonProperty("cvd_distrito")
-    public String cvd_distrito;
+    @JsonProperty("cve_distrito")
+    public String cve_distrito;
 }
